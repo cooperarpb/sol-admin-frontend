@@ -33,7 +33,6 @@ pt-BR:
           start: Iniciar licitação
           review: Enviar para revisão
           draw: Desempatar e enviar para revisão
-          failure: Fracassar licitação
 
         cancelOverlay:
           title: Cancelar Licitação
@@ -50,20 +49,10 @@ pt-BR:
           label: Descreva a justificativa da recusa
           button: Recusar licitação
 
-        failureOverlay:
-          title: Fracassar Licitação
-          alert: A licitação e seus lotes serão fracassados. Atenção! Esta ação não poderá ser desfeita.
-          label: Descreva a justificativa do fracasso
-          button: Fracassar licitação
-
         notifications:
           finish:
             success: Licitação finalizada com sucesso
             failure: Houve um erro ao finalizar a licitação
-
-          fail:
-            success: Licitação fracassada com sucesso
-            failure: Houve um erro ao fracasar a licitação
 
           ongoing:
             success: Licitação iniciada com sucesso

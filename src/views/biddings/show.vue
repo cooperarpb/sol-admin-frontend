@@ -119,10 +119,6 @@
 
               .button.button-primary.u-full-width(v-else-if="bidding.status == 'draw' && $ability.canManage('Bidding')" @click="forceReviewBidding(bidding)")
                 | {{ $t('.button.draw') }}
-        .row
-          .four.columns.offset-by-eight
-            .button.button-danger.u-full-width(v-if="canFailure" @click="showFailureOverlay = true")
-              | {{ $t('.button.failure') }}
 
     modal-wnd(v-if="showCancelOverlay", :footer="false", @close="showCancelOverlay = false")
       .cancel-container(v-if="cancelOverlayItem")
@@ -176,25 +172,6 @@
         .mt-2
           .button.button-primary.u-pull-right(@click="reproveBidding()")
             | {{ $t('.refuseOverlay.button') }}
-
-    modal-wnd(v-if="showFailureOverlay", :footer="false", @close="showFailureOverlay = false")
-      .refuse-container
-        h4.mt-2.text-center {{ $t('.failureOverlay.title') }}
-        hr.mt-0.mb-2.o-container
-
-        .alert.alert-info {{ $t('.failureOverlay.alert') }}
-
-        textarea-field.mt-2(
-          v-model="comment",
-          name="comment",
-          :label="$t('.failureOverlay.label')",
-          :error="errors.comment"
-        )
-
-        .mt-2
-          .button.button-primary.u-pull-right(@click="failBidding()")
-            | {{ $t('.failureOverlay.button') }}
-
 </template>
 
 <script>
@@ -214,8 +191,7 @@
 
         cancelOverlayItem: null,
         showCancelOverlay: false,
-        showRefuseOverlay: false,
-        showFailureOverlay: false
+        showRefuseOverlay: false
       }
     },
 
@@ -236,10 +212,6 @@
       biddingEdictPath() {
         return this.bidding && this.$http.host + "/" + this.bidding.edict_pdf
       },
-
-      canFailure() {
-        return (! _.includes(['finnished', 'canceled', 'failure', 'waiting'], this.bidding.status)) && this.$ability.canManage('Bidding')
-      }
     },
 
     methods: {
@@ -251,30 +223,6 @@
           }).catch((_err) => {
             this.error = _err
             console.error(_err)
-          })
-      },
-
-      failBidding() {
-        let bidding = this.bidding
-        let params = { comment: this.comment }
-
-        this.$http.patch('/administrator/biddings/' + bidding.id + '/fail', params)
-          .then((response) => {
-            this.$notifications.clear()
-            this.$notifications.info(this.$t('.notifications.fail.success'))
-
-            bidding.status = 'failure'
-            this.comment = ''
-            this.getBidding()
-
-            this.showFailureOverlay = false
-          })
-          .catch((err) => {
-            let errors = _.dig(err, 'response', 'data', 'errors') || {}
-
-            this.errors = this.$i18n.errify(errors, { model: 'bidding' })
-
-            this.$notifications.error(this.$t('.notifications.fail.failure'))
           })
       },
 

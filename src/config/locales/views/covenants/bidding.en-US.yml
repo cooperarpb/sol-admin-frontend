@@ -33,7 +33,6 @@
           start: Start procurement process
           review: Submit to revision
           draw: Break tie and submit to revision
-          failure: Fail procurement process
 
         cancelOverlay:
           title: Cancel procurement process
@@ -50,20 +49,10 @@
           label: Rejection justification description
           button: Reject procurement process
 
-        failureOverlay:
-          title: Fail procurement process
-          alert: The procurement process and its lots will be failed. Attention! This action cannot be undone.
-          label: Failure justification description
-          button: Fail procurement process
-
         notifications:
           finish:
             success: Procurement process successfully completed
             failure: An error occurred when completing the procurement process
-
-          fail:
-            success: Procurement process successfully failed
-            failure: An error occurred when failing the procurement process
 
           ongoing:
             success: Procurement process successfully started
