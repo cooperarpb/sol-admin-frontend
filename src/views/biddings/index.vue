@@ -43,7 +43,18 @@
   .root
     headers(:title="this.$t('.title')")
 
-    .container.tool.biddings.u-cf(v-if="biddings")
+    .container.tool(v-if="biddings")
+      select-field(
+        ref="select",
+        name="statusSelector",
+        v-model="statusSelector",
+        v-on:input="fetchByStatus()",
+        :options="biddingStatuses",
+        :placeholder="$t('models.bidding.select.default')",
+        :hideLabel="true"
+      )
+
+    .container.tool.biddings.u-cf(v-if="biddings", v-on:input="resetStatusSelector()")
       filter-bar(:placeholder="$t('.search.placeholder')", :defaultClass="false", @filter="filter")
 
       .row.card-group(v-for="lineBiddings in groupedBiddings")
@@ -100,6 +111,9 @@
         biddingsCount: null,
         params: {},
 
+        // status
+        statusSelector: '',
+
         //search
         search: '',
         searching: false,
@@ -140,8 +154,22 @@
         }
 
         return grouped;
-      }
+      },
 
+      biddingStatuses() {
+        const statuses = [
+          ' ', 'waiting', 'approved', 'ongoing', 'draw', 'under_review',
+          'finnished', 'canceled', 'suspended', 'failure', 'reopened', 'desert'
+        ]
+
+        return statuses.map((status) => {
+          const localeStatus = (status === ' ') ? 'all' : status
+          return {
+            id: status,
+            text: this.$t(`models.bidding.attributes.statuses.${localeStatus}`)
+          }
+        })
+      }
     },
 
     methods: {
@@ -161,6 +189,19 @@
           })
       },
 
+      fetchByStatus() {
+        document.getElementById('search').value = '';
+
+        this.params = { search: '', status: this.statusSelector };
+
+        this.fetch();
+        this.updateRoute();
+      },
+
+      resetStatusSelector() {
+        this.statusSelector = ''
+      },
+
       updatePagination(aResponse) {
         this.page = aResponse.headers['x-page']
         this.totalPages = aResponse.headers['x-total']
@@ -178,7 +219,7 @@
       },
 
       fetchSearch() {
-        this.params = { search: this.search }
+        this.params = { search: this.search, status: '' }
 
         this.updateRoute()
       },
