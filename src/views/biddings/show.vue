@@ -96,6 +96,10 @@
                 a.button.u-full-width(:href="biddingAtaPath", download, target="_blank")
                   | {{ $t('.button.minute') }}
 
+              template(v-if="bidding.spreadsheet_report")
+                a.button.u-full-width(:href="biddingReportPath", download, target="_blank")
+                  | {{ $t('.button.report') }}
+
               template(v-if="bidding.kind == 'global' && showProposals")
                 hr.mb-2.mt-1
 
@@ -231,6 +235,10 @@
 
       biddingAtaPath() {
         return this.bidding && this.$http.host + "/" + this.bidding.minute_pdf
+      },
+
+      biddingReportPath() {
+        return this.bidding && this.$http.host + "/" + this.bidding.spreadsheet_report
       },
 
       biddingEdictPath() {
