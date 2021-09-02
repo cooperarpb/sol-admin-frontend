@@ -15,7 +15,7 @@
         role: Role (type)
         roles:
           viewer: Viewer
-          general: General Administrators
+          general: General Administrator
           reviewer: Reviewer
 
       errors:
