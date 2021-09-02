@@ -40,6 +40,12 @@
             div.mb-1
               | {{ admin.username }}
 
+            label
+              | {{ $t('models.admin.attributes.role') }}
+            div.mb-1
+              | {{ $t('models.admin.attributes.roles.' + admin.role) }}
+
+
           .columns.six
             input-field(
               type="password",
