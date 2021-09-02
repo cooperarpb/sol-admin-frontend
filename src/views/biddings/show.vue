@@ -66,6 +66,10 @@
               span {{ bidding.deadline }}
 
             .row.mb-1
+              label {{ $t('models.admin.attributes.roles.reviewer') }}
+              .admin-role {{ bidding.admin_name }}
+
+            .row.mb-1
               label {{ $t('models.bidding.attributes.status') }}
               span.badge(:class="bidding.status")
                 | {{ $t('models.bidding.attributes.statuses.' + bidding.status) }}
