@@ -123,13 +123,10 @@
 
               .button.button-primary.u-full-width(v-else-if="bidding.status == 'draw' && $ability.canManage('Bidding')" @click="forceReviewBidding(bidding)")
                 | {{ $t('.button.draw') }}
-<<<<<<< HEAD
-=======
         .row
           .four.columns.offset-by-eight(v-if="!isReviewer")
             .button.button-danger.u-full-width(v-if="canFailure" @click="showFailureOverlay = true")
               | {{ $t('.button.failure') }}
->>>>>>> master_bahia
 
     modal-wnd(v-if="showCancelOverlay", :footer="false", @close="showCancelOverlay = false")
       .cancel-container(v-if="cancelOverlayItem")
@@ -223,8 +220,6 @@
       biddingEdictPath() {
         return this.bidding && this.$http.host + "/" + this.bidding.edict_pdf
       },
-<<<<<<< HEAD
-=======
 
       canFailure() {
         return (! _.includes(['finnished', 'canceled', 'failure', 'waiting'], this.bidding.status)) && this.$ability.canManage('Bidding')
@@ -237,7 +232,6 @@
           return false
         }
       }
->>>>>>> master_bahia
     },
 
     methods: {
