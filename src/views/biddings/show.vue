@@ -96,6 +96,10 @@
                 a.button.u-full-width(:href="biddingAtaPath", download, target="_blank")
                   | {{ $t('.button.minute') }}
 
+              template(v-if="bidding.inexecution_reason_pdf")
+                a.button.u-full-width(:href="biddingInexecutionReasinAtaPath", download, target="_blank")
+                  | {{ $t('.button.inexecution_reason_minute') }}
+
               template(v-if="bidding.kind == 'global' && showProposals")
                 hr.mb-2.mt-1
 
@@ -231,6 +235,10 @@
 
       biddingAtaPath() {
         return this.bidding && this.$http.host + "/" + this.bidding.minute_pdf
+      },
+
+      biddingInexecutionReasinAtaPath() {
+        return this.bidding && this.$http.host + "/" + this.bidding.inexecution_reason_pdf
       },
 
       biddingEdictPath() {
