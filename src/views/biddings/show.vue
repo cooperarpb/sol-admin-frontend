@@ -97,7 +97,7 @@
                   | {{ $t('.button.minute') }}
 
               template(v-if="bidding.inexecution_reason_pdf")
-                a.button.u-full-width(:href="biddingInexecutionReasinAtaPath", download, target="_blank")
+                a.button.u-full-width(:href="biddingInexecutionReasonAtaPath", download, target="_blank")
                   | {{ $t('.button.inexecution_reason_minute') }}
 
               template(v-if="bidding.kind == 'global' && showProposals")
@@ -237,7 +237,7 @@
         return this.bidding && this.$http.host + "/" + this.bidding.minute_pdf
       },
 
-      biddingInexecutionReasinAtaPath() {
+      biddingInexecutionReasonAtaPath() {
         return this.bidding && this.$http.host + "/" + this.bidding.inexecution_reason_pdf
       },
 
