@@ -28,6 +28,7 @@
           contracts: Contratos de la licitación
           edict: Descargar edicto
           minute: Descargar acta
+          inexecution_reason_minute: Descargar acta final
           approve: Liberar licitación
           refuse: Rechazar licitación
           start: Iniciar licitación

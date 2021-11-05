@@ -28,6 +28,7 @@
           contracts: Procurement process contracts
           edict: Download RFP
           minute: Download Minutes
+          inexecution_reason_minute: Download Final minutes
           approve: Clear procurement process
           refuse: Reject procurement process
           start: Start procurement process
