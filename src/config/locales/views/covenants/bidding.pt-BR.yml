@@ -28,6 +28,7 @@ pt-BR:
           contracts: Contratos da licitação
           edict: Baixar Edital
           minute: Baixar Ata
+          inexecution_reason_minute: Baixar Ata final
           approve: Liberar licitação
           refuse: Recusar licitação
           start: Iniciar licitação

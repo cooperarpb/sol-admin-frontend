@@ -28,12 +28,12 @@
           contracts: Contratos de la licitación
           edict: Descargar edicto
           minute: Descargar acta
+          inexecution_reason_minute: Descargar acta final
           approve: Liberar licitación
           refuse: Rechazar licitación
           start: Iniciar licitación
           review: Enviar para revisión
           draw: Desempatar e enviar para revisión
-          failure: Fallir licitación
 
         cancelOverlay:
           title: Cancelar licitación
@@ -50,20 +50,10 @@
           label: Describa la justificación del rechazo
           button: Rechazar licitación
 
-        failureOverlay:
-          title: Fallir Licitación
-          alert: La licitación y sus lotes serán fallidos. ¡Atención! Esta acción no podrá deshacerse.
-          label: Describa la justificación de la falla
-          button: Fallir licitación
-
         notifications:
           finish:
             success: Licitación finalizada con éxito
             failure: Hubo un error al finalizar la licitación
-
-          fail:
-            success: Licitación fallida con éxito
-            failure: Hubo un error al fallir la licitación
 
           ongoing:
             success: Licitación iniciada con éxito

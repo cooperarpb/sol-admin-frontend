@@ -66,6 +66,10 @@
               span {{ bidding.deadline }}
 
             .row.mb-1
+              label {{ $t('models.admin.attributes.roles.reviewer') }}
+              .admin-role {{ bidding.admin_name }}
+
+            .row.mb-1
               label {{ $t('models.bidding.attributes.status') }}
               span.badge(:class="bidding.status")
                 | {{ $t('models.bidding.attributes.statuses.' + bidding.status) }}
@@ -95,6 +99,10 @@
               template(v-if="bidding.minute_pdf")
                 a.button.u-full-width(:href="biddingAtaPath", download, target="_blank")
                   | {{ $t('.button.minute') }}
+
+              template(v-if="bidding.inexecution_reason_pdf")
+                a.button.u-full-width(:href="biddingInexecutionReasonAtaPath", download, target="_blank")
+                  | {{ $t('.button.inexecution_reason_minute') }}
 
               template(v-if="bidding.kind == 'global' && showProposals")
                 hr.mb-2.mt-1
@@ -176,25 +184,6 @@
         .mt-2
           .button.button-primary.u-pull-right(@click="reproveBidding()")
             | {{ $t('.refuseOverlay.button') }}
-
-    modal-wnd(v-if="showFailureOverlay", :footer="false", @close="showFailureOverlay = false")
-      .refuse-container
-        h4.mt-2.text-center {{ $t('.failureOverlay.title') }}
-        hr.mt-0.mb-2.o-container
-
-        .alert.alert-info {{ $t('.failureOverlay.alert') }}
-
-        textarea-field.mt-2(
-          v-model="comment",
-          name="comment",
-          :label="$t('.failureOverlay.label')",
-          :error="errors.comment"
-        )
-
-        .mt-2
-          .button.button-primary.u-pull-right(@click="failBidding()")
-            | {{ $t('.failureOverlay.button') }}
-
 </template>
 
 <script>
@@ -214,8 +203,7 @@
 
         cancelOverlayItem: null,
         showCancelOverlay: false,
-        showRefuseOverlay: false,
-        showFailureOverlay: false
+        showRefuseOverlay: false
       }
     },
 
@@ -231,6 +219,10 @@
 
       biddingAtaPath() {
         return this.bidding && this.$http.host + "/" + this.bidding.minute_pdf
+      },
+
+      biddingInexecutionReasonAtaPath() {
+        return this.bidding && this.$http.host + "/" + this.bidding.inexecution_reason_pdf
       },
 
       biddingEdictPath() {
@@ -259,30 +251,6 @@
           }).catch((_err) => {
             this.error = _err
             console.error(_err)
-          })
-      },
-
-      failBidding() {
-        let bidding = this.bidding
-        let params = { comment: this.comment }
-
-        this.$http.patch('/administrator/biddings/' + bidding.id + '/fail', params)
-          .then((response) => {
-            this.$notifications.clear()
-            this.$notifications.info(this.$t('.notifications.fail.success'))
-
-            bidding.status = 'failure'
-            this.comment = ''
-            this.getBidding()
-
-            this.showFailureOverlay = false
-          })
-          .catch((err) => {
-            let errors = _.dig(err, 'response', 'data', 'errors') || {}
-
-            this.errors = this.$i18n.errify(errors, { model: 'bidding' })
-
-            this.$notifications.error(this.$t('.notifications.fail.failure'))
           })
       },
 
