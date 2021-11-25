@@ -28,6 +28,7 @@
           contracts: Contrats de l'appel d'offres
           edict: Télécharger le Cahier des Charges
           minute: Télécharger ATA
+          inexecution_reason_minute: Télécharger ATA final
           approve: Libérer l'appel d'offres
           refuse: Refuser l'appel d'offres
           start: Lancer l'appel d'offres

@@ -14,7 +14,7 @@ pt-BR:
         role: Papel (tipo)
         roles:
           viewer: Visualizador
-          general: Administradores Geral
+          general: Administrador Geral
           reviewer: Revisor
 
       errors:

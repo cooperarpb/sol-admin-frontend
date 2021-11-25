@@ -20,6 +20,7 @@ pt-BR:
         address: Local de entrega
 
         statuses:
+          all: -- Listar Todas --
           approved: Liberada
           canceled: Cancelada
           closed: Fechada
@@ -54,3 +55,6 @@ pt-BR:
           missing: Data de encerramento não pode ficar em branco
         opening_date:
           missing: Data de abertura não pode ficar em branco
+
+      select:
+        default: Busque pelo status da licitação

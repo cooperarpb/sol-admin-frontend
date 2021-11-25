@@ -20,6 +20,7 @@
         address: Delivery location
 
         statuses:
+          all: -- List All --
           approved: Cleared
           canceled: Cancelled
           closed: Closed
@@ -54,3 +55,6 @@
           missing: End date cannot be blank
         opening_date:
           missing: Opening date cannot be blank
+
+      select:
+        default: Search by bidding status

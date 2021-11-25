@@ -20,6 +20,7 @@
         address: Lieu de livraison
 
         statuses:
+          all: -- Tout lister --
           approved: Libérée
           canceled: Annulée
           closed: Fermée
@@ -54,3 +55,6 @@
           missing: Le champ Date de clôture ne peut pas rester en blanc
         opening_date:
           missing: Le champ Date d'ouverture ne peut pas rester en blanc
+
+      select:
+        default: Rechercher l'état des enchères
