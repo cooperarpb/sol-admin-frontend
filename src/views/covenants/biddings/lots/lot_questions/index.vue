@@ -11,7 +11,7 @@
     .container.tool.biddings.u-cf(v-else-if="this.lot_questions_count > 0")
       .card.mb-2.u-cf.u-full-width
         ul.mb-0
-          li.list-item.row.p-1(v-for="lotQuestion in lot_questions", @click="editLotQuestionPath(lotQuestion)")
+          li.list-item.row.p-1(v-for="lotQuestion in lot_questions")
             .container
               .list-title
                 | {{ lotQuestion.question }}
@@ -82,7 +82,7 @@
             this.lot_questions = response.data
             this.lot_questions_count = this.lot_questions.length
 
-            // this.updatePagination(response)
+            this.updatePagination(response)
 
           }).catch((_err) => {
             this.error = _err
@@ -115,8 +115,7 @@
 
       init() {
         this.parseRoute()
-        this.fetch()
-        // this.params = this.$route.query
+        this.params = this.$route.query
       }
     },
 
@@ -124,16 +123,16 @@
       this.init();
     },
 
-    // watch: {
-    //   fetchParams() {
-    //     this.fetch()
-    //   },
+    watch: {
+      fetchParams() {
+        this.fetch()
+      },
 
-    //   page() {
-    //     this.params = Object.assign({}, this.params, { page: this.page });
-    //     this.updateRoute()
-    //   }
-    // }
+      page() {
+        this.params = Object.assign({}, this.params, { page: this.page });
+        this.updateRoute()
+      }
+    }
   }
 
 </script>
