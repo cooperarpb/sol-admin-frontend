@@ -93,6 +93,12 @@
                   i.fa.fa-download.mr-1.u-pull-left
                   span.attachment-name.u-pull-left {{ attachment.filename }}
 
+
+        .row
+          .container
+            router-link.router-link.button.mt-4.button-show-lot-questions(:to="{ name: 'LotQuestions', params: { covenant_id: covenantId, bidding_id: biddingId, lot_id: lot.id  } }")
+              | {{ $t('.button.lot_questions') }}
+
       .row
         .twelve.columns
           paginator(

@@ -1,0 +1,10 @@
+pt-BR:
+  covenants:
+    biddings:
+      lots:
+        lot_questions:
+          index:
+            title: Licitações
+            empty: Nenhum esclarecimento
+            loading: Carregando esclarecimentos...
+            waiting_answer: Aguardando resposta

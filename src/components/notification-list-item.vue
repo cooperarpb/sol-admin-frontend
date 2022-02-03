@@ -50,6 +50,7 @@
         if((/^(proposal\.lot)/i).test(action)) return this.proposalsRoute(notification)
         if((/^(proposal)/i).test(action)) return this.globalProposalsRoute(notification)
         if((/^(contract)/i).test(action)) return this.contractRoute(notification)
+        if((/^(lot_question)/i).test(action)) return this.lotQuestionsRoute(notification)
       },
 
       contractRoute(notification) {
@@ -84,6 +85,12 @@
         let args = notification.args
 
         return Object.assign(this.baseProposalParams(notification), { lot_id: args.lot_id })
+      },
+
+      lotQuestionsRoute(notification) {
+        let args = notification.args
+
+        return { name: 'LotQuestions', params: { bidding_id: args.bidding_id, lot_id: args.lot_id } }
       },
 
       clickedNotification(notification) {

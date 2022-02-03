@@ -36,6 +36,7 @@ import Contract from '@/views/biddings/contracts/show.vue'
 
 import Lots from '@/views/covenants/biddings/lots/index.vue'
 import Proposals from '@/views/covenants/biddings/lots/proposals/index.vue'
+import LotQuestions from '@/views/covenants/biddings/lots/lot_questions/index.vue'
 
 import Group from '@/views/covenants/groups/show.vue'
 import NewGroup from '@/views/covenants/groups/new.vue'
@@ -584,6 +585,17 @@ const routes = [
     component: Notifications,
     meta:      {
       auth:       true,
+      transition: { name: 'fade' }
+    }
+  },
+
+  {
+    name:      'LotQuestions',
+    path:      '/covenants/:covenant_id/biddings/:bidding_id/lots/:lot_id/lot_questions',
+    component: LotQuestions,
+    meta:      {
+      auth:       true,
+      back:       true,
       transition: { name: 'fade' }
     }
   },
