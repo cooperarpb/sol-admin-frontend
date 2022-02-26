@@ -18,6 +18,7 @@ pt-BR:
         covenantId: Convênio
         covenant: Convênio
         address: Local de entrega
+        cancel_comment: Motivo do cancelamento
 
         statuses:
           all: -- Listar Todas --

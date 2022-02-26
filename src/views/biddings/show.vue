@@ -74,6 +74,11 @@
               span.badge(:class="bidding.status")
                 | {{ $t('models.bidding.attributes.statuses.' + bidding.status) }}
 
+            .row.mb-1(v-if="bidding.status === 'canceled'")
+              label {{ $t('models.bidding.attributes.cancel_comment') }}
+              span
+                | {{ bidding.cancel_comment }}
+
           .four.columns
             h5.mb-0 {{ this.$t('.actions.title') }}
             hr.mt-0
