@@ -18,7 +18,8 @@
         covenantId: Convention
         covenant: Convention
         address: Lieu de livraison
-
+        cancel_comment: Raison pour l'annulation
+        
         statuses:
           all: -- Tout lister --
           approved: Libérée

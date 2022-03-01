@@ -34,6 +34,7 @@
           start: Start procurement process
           review: Submit to revision
           draw: Break tie and submit to revision
+          regenerate_failure_bidding_minute: Generate minutes again
 
         cancelOverlay:
           title: Cancel procurement process
