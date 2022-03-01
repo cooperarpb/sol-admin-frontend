@@ -34,6 +34,7 @@
           start: Iniciar licitación
           review: Enviar para revisión
           draw: Desempatar e enviar para revisión
+          regenerate_failure_bidding_minute: Volver a generar acta
 
         cancelOverlay:
           title: Cancelar licitación
