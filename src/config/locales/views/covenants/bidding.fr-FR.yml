@@ -35,6 +35,7 @@
           review: Envoyer pour révision
           draw: Départager et envoyer pour révision
           failure: Echouer l'appel d'offres
+          regenerate_failure_bidding_minute: générer à nouveau des ATA
 
         cancelOverlay:
           title: Annuler l'appel d'offres

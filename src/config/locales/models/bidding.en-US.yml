@@ -18,6 +18,10 @@
         covenantId: Covenant
         covenant: Covenant
         address: Delivery location
+        cancel_comment: reason for cancellation
+        classification_name: Classification
+        modality: Modality
+        draw_end_days: Calendar days for tie-break
 
         statuses:
           all: -- List All --
@@ -39,6 +43,11 @@
           global: Global price
           lot: Price per lot
           unitary: Unit price
+
+        modalities:
+          unrestricted: Open/Public
+          open_invite: Open call for bids
+          closed_invite: Closed call for bids
 
       errors:
         covenant:

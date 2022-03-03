@@ -18,6 +18,10 @@
         covenantId: Convention
         covenant: Convention
         address: Lieu de livraison
+        cancel_comment: Raison pour l'annulation
+        classification_name: Classification
+        modality: Modalité
+        draw_end_days: Jours consécutifs pour le départage
 
         statuses:
           all: -- Tout lister --
@@ -39,6 +43,11 @@
           global: Prix global
           lot: Prix par lot
           unitary: Prix individuel
+
+        modalities:
+          unrestricted: Ouverte/publique
+          open_invite: Invitation ouverte
+          closed_invite: Invitation fermée
 
       errors:
         covenant:
