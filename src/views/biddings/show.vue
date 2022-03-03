@@ -102,7 +102,7 @@
 
             .row.mb-1
               label {{ $t('models.bidding.attributes.address') }}
-              span {{ bidding.address }}
+              span {{ bidding.address || $t('messages.not_informed') }}
 
             .row.mb-1
               label {{ $t('models.bidding.attributes.draw_end_days') }}
