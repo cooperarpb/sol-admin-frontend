@@ -86,6 +86,36 @@
               span.badge(:class="bidding.status")
                 | {{ $t('models.bidding.attributes.statuses.' + bidding.status) }}
 
+<<<<<<< HEAD
+=======
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.classification_name') }}
+              span {{ bidding.classification_name }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.startDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.start_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.closingDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.closing_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.address') }}
+              span {{ bidding.address || $t('messages.not_informed') }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.draw_end_days') }}
+              span {{ bidding.draw_end_days }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.modality') }}
+              span
+                | {{ $t('models.bidding.attributes.modalities.' + bidding.modality) }}
+
+>>>>>>> upstream/item_28_master_bahia
             .row.mb-1(v-if="bidding.status === 'canceled'")
               label {{ $t('models.bidding.attributes.cancel_comment') }}
               span

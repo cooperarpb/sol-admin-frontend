@@ -19,6 +19,9 @@ pt-BR:
         covenant: Convênio
         address: Local de entrega
         cancel_comment: Motivo do cancelamento
+        classification_name: Classificação
+        modality: Modalidade
+        draw_end_days: Dias corridos para desempate
 
         statuses:
           all: -- Listar Todas --
@@ -40,6 +43,11 @@ pt-BR:
           global: Preço global
           lot: Preço por lote
           unitary: Preço individual
+
+        modalities:
+          unrestricted: Aberta/Pública
+          open_invite: Convite aberto
+          closed_invite: Convite fechado
 
       errors:
         covenant:

@@ -78,6 +78,25 @@
               .admin-role {{ bidding.admin_name }}
 
             .row.mb-1
+              label {{ $t('models.bidding.attributes.startDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.start_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.closingDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.closing_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.modality') }}
+              span
+                | {{ $t('models.bidding.attributes.modalities.' + bidding.modality) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.classification_name') }}
+              span {{ bidding.classification_name }}
+
+            .row.mb-1
               label {{ $t('models.bidding.attributes.status') }}
               span.badge(:class="bidding.status")
                 | {{ $t('models.bidding.attributes.statuses.' + bidding.status) }}
