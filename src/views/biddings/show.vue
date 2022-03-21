@@ -86,8 +86,6 @@
               span.badge(:class="bidding.status")
                 | {{ $t('models.bidding.attributes.statuses.' + bidding.status) }}
 
-<<<<<<< HEAD
-=======
             .row.mb-1
               label {{ $t('models.bidding.attributes.classification_name') }}
               span {{ bidding.classification_name }}
@@ -115,7 +113,6 @@
               span
                 | {{ $t('models.bidding.attributes.modalities.' + bidding.modality) }}
 
->>>>>>> upstream/item_28_master_bahia
             .row.mb-1(v-if="bidding.status === 'canceled'")
               label {{ $t('models.bidding.attributes.cancel_comment') }}
               span
