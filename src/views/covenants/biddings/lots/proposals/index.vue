@@ -101,7 +101,11 @@
             strong {{ $t('.proposal.refuse') }}
             |  {{ proposal.comment }}
 
-        table-list
+        span {{ $t('.proposal.estimated_cost_total') }}
+        span.ml-1.price-total
+          |  {{ $asCurrency(proposal.lot.estimated_cost_total) }}
+
+        table-list.mt-1
           thead
             tr
               th
@@ -112,19 +116,27 @@
 
               th
                 | {{ $t('models.lot_group_item_lot_proposal.attributes.price') }}
+                
+              th
+                | {{ $t('.item_details') }}
+
 
           tbody(v-if="proposal.lot_group_item_lot_proposals")
             tr(v-for="lot_group_item_lot_proposal in proposal.lot_group_item_lot_proposals")
               td(width="50%")
                 | {{ lot_group_item_lot_proposal.lot_group_item.item_short_name }}
 
-              td(width="20%")
+              td(width="10%")
                 | {{ $asNumber(lot_group_item_lot_proposal.lot_group_item.quantity, { precision: 2 }) }}
 
-              td(width="30%")
+              td(width="20%")
                 |  {{ $asCurrency(lot_group_item_lot_proposal.price) }}
 
                 |  / {{ lot_group_item_lot_proposal.lot_group_item.item_unit }}
+
+              td(width="20%")
+                router-link.button.router-link(:to="{ name: 'item', params: { id: lot_group_item_lot_proposal.lot_group_item.item_id } }")
+                  | {{ $t('.button.item_details') }}
 
         .row(v-if="proposal.status == 'coop_refused'")
           .button.button-danger.button-cancel-refuse-proposal(@click="toggleCancelRefuseOverlay(proposal)")

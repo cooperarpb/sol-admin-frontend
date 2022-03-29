@@ -6,6 +6,7 @@
           title: Licitaciones
           empty: Ninguna propuesta
           loading: Cargando propuestas...
+          item_details: Detallando
 
           proposal:
             status: 'Propuesta %{status}'
@@ -20,6 +21,7 @@
             confirmRefuse: Confirmar rechazo
             reproveProposal: Reprobar propuesta
             confirmAccept: Aprobar propuesta
+            item_details: Detalles del artículo
 
           cancelRefuseOverlay:
             title: Cancelar rechazo
