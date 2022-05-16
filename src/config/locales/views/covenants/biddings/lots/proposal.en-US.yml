@@ -8,7 +8,9 @@
             empty: No proposal
             loading: Loading proposals...
             item_details: Detailing
-
+            attachments: Attachments
+            no_attachments: There are no attachments
+            
             proposal:
               status: 'Proposal %{status}'
               value: Proposal value

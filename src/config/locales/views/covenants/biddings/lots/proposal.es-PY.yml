@@ -8,6 +8,8 @@
             empty: Ninguna propuesta
             loading: Cargando propuestas...
             item_details: Detallando
+            attachments: archivos adjuntos
+            no_attachments: No hay archivos adjuntos
 
             proposal:
               status: 'Propuesta %{status}'

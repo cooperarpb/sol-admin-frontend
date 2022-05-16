@@ -8,6 +8,8 @@ pt-BR:
             empty: Nenhuma proposta
             loading: Carregando propostas...
             item_details: Detalhamento
+            attachments: Anexos
+            no_attachments: Não há anexos
 
             proposal:
               status: 'Proposta %{status}'

@@ -90,6 +90,18 @@
             label {{ $t('models.legal_representative.attributes.cpf') }}
             span {{ proposal.provider.legal_representative.cpf }}
 
+        h6.mt-1.mb-1 {{ $t('.attachments') }}
+
+        .row(v-for="(lotAttachment, key) in proposal.lot_attachments")
+          .twelve.columns
+            a.input-file.mb-1(:href="attachmentPath(lotAttachment.attachment_file)", target="_blank")
+              i.fa.fa-download.mr-1.u-pull-left
+              span.attachment-name {{ lotAttachment.attachment_filename }}
+
+        .row(v-if="proposal.lot_attachments.length === 0")
+          .twelve.columns
+            span {{ $t('.no_attachments') }}
+
         h6.mt-1.mb-1 {{ $t('.proposal.value') }}
 
         .price-container.mb-2(:class="proposal.status")
@@ -271,6 +283,11 @@
             this.error = _err
             console.error(_err)
           })
+      },
+
+      attachmentPath(attachment) {
+        if(typeof attachment === 'undefined') return
+        return app.secrets.api.host + attachment.url
       },
 
       toggleCancelRefuseOverlay(proposal) {

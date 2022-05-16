@@ -8,6 +8,8 @@
             empty: Aucune offre
             loading: Téléchargement des offres...
             item_details: Détails
+            attachments: pièces jointes
+            no_attachments: il n'y a pas de pièces jointes
 
             proposal:
               status: 'Offre %{status}'
