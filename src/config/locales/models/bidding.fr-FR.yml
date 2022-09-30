@@ -20,6 +20,7 @@
         address: Lieu de livraison
         cancel_comment: Raison pour l'annulation
         classification_name: Classification
+        subclassifications: Sous-classifications
         modality: Modalité
         draw_end_days: Jours consécutifs pour le départage
 

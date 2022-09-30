@@ -91,6 +91,12 @@
               span {{ bidding.classification_name }}
 
             .row.mb-1
+              label {{ $t('models.bidding.attributes.subclassifications') }}
+              span(v-if="bidding.subclassifications.length === 0") {{ $t('messages.not_informed') }}
+              .row(v-for="subclassification in bidding.subclassifications")
+                span {{ subclassification.name }}
+
+            .row.mb-1
               label {{ $t('models.bidding.attributes.startDate') }}
               span
                 | {{ $l('date.formats.default', bidding.start_date) }}

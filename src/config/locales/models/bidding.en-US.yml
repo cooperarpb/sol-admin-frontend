@@ -20,6 +20,7 @@
         address: Delivery location
         cancel_comment: reason for cancellation
         classification_name: Classification
+        subclassifications: Subclassifications
         modality: Modality
         draw_end_days: Calendar days for tie-break
 

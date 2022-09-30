@@ -20,6 +20,7 @@ pt-BR:
         address: Local de entrega
         cancel_comment: Motivo do cancelamento
         classification_name: Classificação
+        subclassifications: Subclassificações
         modality: Modalidade
         draw_end_days: Dias corridos para desempate
 
