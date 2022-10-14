@@ -6,7 +6,10 @@
           title: Licitaciones
           empty: Ninguna propuesta
           loading: Cargando propuestas...
-
+          item_details: Detallando
+          attachments: archivos adjuntos
+          no_attachments: No hay archivos adjuntos
+          
           proposal:
             status: 'Propuesta %{status}'
             value: Valor de la propuesta
@@ -20,6 +23,7 @@
             confirmRefuse: Confirmar rechazo
             reproveProposal: Reprobar propuesta
             confirmAccept: Aprobar propuesta
+            item_details: Detalles del artículo
 
           cancelRefuseOverlay:
             title: Cancelar rechazo

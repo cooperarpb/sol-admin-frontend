@@ -28,12 +28,14 @@ pt-BR:
           contracts: Contratos da licitação
           edict: Baixar Edital
           minute: Baixar Ata
+          inexecution_reason_minute: Baixar Ata final
           approve: Liberar licitação
           refuse: Recusar licitação
           start: Iniciar licitação
           review: Enviar para revisão
           draw: Desempatar e enviar para revisão
           failure: Fracassar licitação
+          regenerate_failure_bidding_minute: Gerar ata novamente
 
         cancelOverlay:
           title: Cancelar Licitação

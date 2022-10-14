@@ -15,7 +15,7 @@
         role: Rôle (type)
         roles:
           viewer: Visualisateur
-          general: Administrateurs en général
+          general: Administrateur en général
           reviewer: Réviseur
 
       errors:

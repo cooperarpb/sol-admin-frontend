@@ -18,8 +18,14 @@
         covenantId: Covenant
         covenant: Covenant
         address: Delivery location
+        cancel_comment: reason for cancellation
+        classification_name: Classification
+        subclassifications: Subclassifications
+        modality: Modality
+        draw_end_days: Calendar days for tie-break
 
         statuses:
+          all: -- List All --
           approved: Cleared
           canceled: Cancelled
           closed: Closed
@@ -39,6 +45,11 @@
           lot: Price per lot
           unitary: Unit price
 
+        modalities:
+          unrestricted: Open/Public
+          open_invite: Open call for bids
+          closed_invite: Closed call for bids
+
       errors:
         covenant:
           missing: Covenant cannot be blank
@@ -54,3 +65,6 @@
           missing: End date cannot be blank
         opening_date:
           missing: Opening date cannot be blank
+
+      select:
+        default: Search by bidding status

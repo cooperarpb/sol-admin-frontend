@@ -7,6 +7,9 @@
             title: Appels d'offres
             empty: Aucune offre
             loading: Téléchargement des offres...
+            item_details: Détails
+            attachments: pièces jointes
+            no_attachments: il n'y a pas de pièces jointes
 
             proposal:
               status: 'Offre %{status}'
@@ -19,6 +22,7 @@
               confirmRefuse: Confirmer le rejet
               reproveProposal: Rejeter l'Offre
               confirmAccept: Approuver l'Offre
+              item_details: Détails de l'article
 
             cancelRefuseOverlay:
               title: Annuler le rejet

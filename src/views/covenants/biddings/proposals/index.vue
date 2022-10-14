@@ -90,6 +90,20 @@
             label {{ $t('models.legal_representative.attributes.cpf') }}
             span {{ proposal.provider.legal_representative.cpf }}
 
+        h6.mt-1.mb-1 {{ $t('.attachments') }}
+
+        .row(v-for="(lotProposal, key) in proposal.lot_proposals")
+
+          .row(v-for="(lotAttachment, key_teste) in lotProposal.lot_attachments")
+            .twelve.columns
+              a.input-file.mb-1(:href="attachmentPath(lotAttachment.attachment_file)", target="_blank")
+                i.fa.fa-download.mr-1.u-pull-left
+                span.attachment-name {{ lotAttachment.attachment_filename }}
+
+          .row(v-if="lotProposal.lot_attachments.length === 0")
+            .twelve.columns
+              span {{ $t('.no_attachments') }}
+
         hr
         h6.mt-1.mb-1 {{ $t('.proposal.value') }}
 
@@ -107,7 +121,11 @@
         div(v-for="lot_proposal in proposal.lot_proposals")
           h6 {{ $t('.lot', { value: lot_proposal.lot.name }) }}
 
-          table-list
+          span {{ $t('.proposal.estimated_cost_total') }}
+          span.ml-1.price-total
+            |  {{ $asCurrency(lot_proposal.lot.estimated_cost_total) }}
+
+          table-list.mt-1
             thead
               tr
                 th
@@ -119,17 +137,24 @@
                 th
                   | {{ $t('models.lot_group_item_lot_proposal.attributes.price') }}
 
+                th
+                  | {{ $t('.item_details') }}
+
             tbody(v-if="lot_proposal.lot_group_item_lot_proposals")
               tr(v-for="lot_group_item_lot_proposal in lot_proposal.lot_group_item_lot_proposals")
                 td(width="50%")
                   | {{ lot_group_item_lot_proposal.lot_group_item.item_short_name }}
 
-                td(width="20%")
+                td(width="10%")
                   | {{ $asNumber(lot_group_item_lot_proposal.lot_group_item.quantity, { precision: 2 }) }}
 
-                td(width="30%")
+                td(width="20%")
                   |  {{ $asCurrency(lot_group_item_lot_proposal.price) }}
                   |  / {{ lot_group_item_lot_proposal.lot_group_item.item_unit }}
+
+                td(width="20%")
+                  router-link.button.router-link(:to="{ name: 'item', params: { id: lot_group_item_lot_proposal.lot_group_item.item_id } }")
+                    | {{ $t('.button.item_details') }}
 
         .row(v-if="proposal.status == 'coop_refused'")
           .button.button-danger(@click="toggleCancelRefuseOverlay(proposal)")
@@ -258,6 +283,11 @@
             this.error = _err
             console.error(_err)
           })
+      },
+
+      attachmentPath(attachment) {
+        if(typeof attachment === 'undefined') return
+        return app.secrets.api.host + attachment.url
       },
 
       toggleCancelRefuseOverlay(proposal) {

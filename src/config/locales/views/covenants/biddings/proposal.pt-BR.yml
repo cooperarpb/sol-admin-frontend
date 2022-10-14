@@ -6,11 +6,15 @@ pt-BR:
           title: Licitações
           empty: Nenhuma proposta
           loading: Carregando propostas...
+          item_details: Detalhamento
+          attachments: Anexos
+          no_attachments: Não há anexos
 
           proposal:
             status: 'Proposta %{status}'
             value: Valor da proposta
             total: 'Valor total:'
+            estimated_cost_total: 'Valor estimado:'
             refuse: 'Motivo da recusa:'
 
           lot: 'Lote: %{value}'
@@ -20,6 +24,7 @@ pt-BR:
             confirmRefuse: Confirmar recusa
             reproveProposal: Reprovar proposta
             confirmAccept: Aprovar proposta
+            item_details: Detalhes do item
 
           cancelRefuseOverlay:
             title: Cancelar recusa

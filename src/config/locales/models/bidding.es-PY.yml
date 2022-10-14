@@ -18,8 +18,14 @@
         covenantId: Convenio
         covenant: Convenio
         address: Lugar de entrega
+        cancel_comment: Razón de la cancelación
+        classification_name: Clasificación
+        subclassifications: Subclasificaciones
+        modality: Modalidad
+        draw_end_days: Días corridos para desempate
 
         statuses:
+          all: -- Listar Todo --
           approved: Liberada
           canceled: Cancelada
           closed: Cerrada
@@ -39,6 +45,11 @@
           lot: Precio por lote
           unitary: Precio individual
 
+        modalities:
+          unrestricted: Abierta/Pública
+          open_invite: Invitación abierta
+          closed_invite: Invitación cerrada
+
       errors:
         covenant:
           missing: El convenio no puede quedar en blanco
@@ -54,3 +65,6 @@
           missing: La fecha de cierre no puede quedar en blanco
         opening_date:
           missing: La fecha de apertura no puede quedar en blanco
+
+      select:
+        default: Buscar por el status de la licitación

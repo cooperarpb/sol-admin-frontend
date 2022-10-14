@@ -6,6 +6,18 @@
     bottom: 0;
   }
 
+  #view {
+    .button.button-primary:disabled {
+      background-color: $pale-grey;
+      color: $black;
+  
+      &:hover {
+        background-color: $pale-grey;
+        color: $black;
+      }
+    }
+  }
+
  .badge {
     &.draft,
     &.closed,
@@ -66,9 +78,57 @@
               span {{ bidding.deadline }}
 
             .row.mb-1
+              label {{ $t('models.admin.attributes.roles.reviewer') }}
+              .admin-role {{ bidding.admin_name }}
+
+            .row.mb-1
               label {{ $t('models.bidding.attributes.status') }}
               span.badge(:class="bidding.status")
                 | {{ $t('models.bidding.attributes.statuses.' + bidding.status) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.classification_name') }}
+              span {{ bidding.classification_name }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.subclassifications') }}
+              span(v-if="bidding.subclassifications.length === 0") {{ $t('messages.not_informed') }}
+              .row(v-for="subclassification in bidding.subclassifications")
+                span {{ subclassification.name }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.startDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.start_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.closingDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.closing_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.address') }}
+              span {{ bidding.address || $t('messages.not_informed') }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.draw_end_days') }}
+              span {{ bidding.draw_end_days }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.modality') }}
+              span
+                | {{ $t('models.bidding.attributes.modalities.' + bidding.modality) }}
+
+            .row.mb-1(v-if="bidding.status === 'canceled'")
+              label {{ $t('models.bidding.attributes.cancel_comment') }}
+              span
+                | {{ bidding.cancel_comment }}
+
+            template(v-if="bidding.status == 'failure' && $ability.canManage('Bidding')")
+              .row.mb-1
+                .four.columns
+                  button.button.button-primary.u-full-width(@click="regenerateFailureBiddingMinute(bidding)", :disabled="regenerateFailureBiddingMinuteDisabled")
+                    | {{ $t('.button.regenerate_failure_bidding_minute') }}
 
           .four.columns
             h5.mb-0 {{ this.$t('.actions.title') }}
@@ -95,6 +155,10 @@
               template(v-if="bidding.minute_pdf")
                 a.button.u-full-width(:href="biddingAtaPath", download, target="_blank")
                   | {{ $t('.button.minute') }}
+
+              template(v-if="bidding.inexecution_reason_pdf")
+                a.button.u-full-width(:href="biddingInexecutionReasonAtaPath", download, target="_blank")
+                  | {{ $t('.button.inexecution_reason_minute') }}
 
               template(v-if="bidding.kind == 'global' && showProposals")
                 hr.mb-2.mt-1
@@ -176,25 +240,6 @@
         .mt-2
           .button.button-primary.u-pull-right(@click="reproveBidding()")
             | {{ $t('.refuseOverlay.button') }}
-
-    modal-wnd(v-if="showFailureOverlay", :footer="false", @close="showFailureOverlay = false")
-      .refuse-container
-        h4.mt-2.text-center {{ $t('.failureOverlay.title') }}
-        hr.mt-0.mb-2.o-container
-
-        .alert.alert-info {{ $t('.failureOverlay.alert') }}
-
-        textarea-field.mt-2(
-          v-model="comment",
-          name="comment",
-          :label="$t('.failureOverlay.label')",
-          :error="errors.comment"
-        )
-
-        .mt-2
-          .button.button-primary.u-pull-right(@click="failBidding()")
-            | {{ $t('.failureOverlay.button') }}
-
 </template>
 
 <script>
@@ -215,7 +260,7 @@
         cancelOverlayItem: null,
         showCancelOverlay: false,
         showRefuseOverlay: false,
-        showFailureOverlay: false
+        regenerateFailureBiddingMinuteFlag: false
       }
     },
 
@@ -229,8 +274,16 @@
         return status != "ongoing" && status != "draw"
       },
 
+      regenerateFailureBiddingMinuteDisabled() {
+        return this.regenerateFailureBiddingMinuteFlag == true
+      },
+
       biddingAtaPath() {
         return this.bidding && this.$http.host + "/" + this.bidding.minute_pdf
+      },
+
+      biddingInexecutionReasonAtaPath() {
+        return this.bidding && this.$http.host + "/" + this.bidding.inexecution_reason_pdf
       },
 
       biddingEdictPath() {
@@ -262,28 +315,10 @@
           })
       },
 
-      failBidding() {
-        let bidding = this.bidding
-        let params = { comment: this.comment }
+      regenerateFailureBiddingMinute(bidding) {
+        this.regenerateFailureBiddingMinuteFlag = true
 
-        this.$http.patch('/administrator/biddings/' + bidding.id + '/fail', params)
-          .then((response) => {
-            this.$notifications.clear()
-            this.$notifications.info(this.$t('.notifications.fail.success'))
-
-            bidding.status = 'failure'
-            this.comment = ''
-            this.getBidding()
-
-            this.showFailureOverlay = false
-          })
-          .catch((err) => {
-            let errors = _.dig(err, 'response', 'data', 'errors') || {}
-
-            this.errors = this.$i18n.errify(errors, { model: 'bidding' })
-
-            this.$notifications.error(this.$t('.notifications.fail.failure'))
-          })
+        return this.$http.patch('/administrator/biddings/' + bidding.id + '/regenerate_failure_minutes')
       },
 
       approveBidding(bidding) {

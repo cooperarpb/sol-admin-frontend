@@ -43,7 +43,18 @@
   .root
     headers(:title="this.$t('.title')")
 
-    .container.tool.biddings.u-cf(v-if="biddings")
+    .container.tool(v-if="biddings")
+      select-field(
+        ref="select",
+        name="statusSelector",
+        v-model="statusSelector",
+        v-on:input="fetchByStatus()",
+        :options="biddingStatuses",
+        :placeholder="$t('models.bidding.select.default')",
+        :hideLabel="true"
+      )
+
+    .container.tool.biddings.u-cf(v-if="biddings", v-on:input="resetStatusSelector()")
       filter-bar(:placeholder="$t('.search.placeholder')", :defaultClass="false", @filter="filter")
 
       .row.card-group(v-for="lineBiddings in groupedBiddings")
@@ -61,6 +72,29 @@
             .row.mb-1
               label {{ $t('models.cooperative.one') }}
               .cooperative-name {{ bidding.cooperative.name }}
+
+            .row.mb-1
+              label {{ $t('models.admin.attributes.roles.reviewer') }}
+              .admin-role {{ bidding.admin_name }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.startDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.start_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.closingDate') }}
+              span
+                | {{ $l('date.formats.default', bidding.closing_date) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.modality') }}
+              span
+                | {{ $t('models.bidding.attributes.modalities.' + bidding.modality) }}
+
+            .row.mb-1
+              label {{ $t('models.bidding.attributes.classification_name') }}
+              span {{ bidding.classification_name }}
 
             .row.mb-1
               label {{ $t('models.bidding.attributes.status') }}
@@ -99,6 +133,9 @@
         biddings: null,
         biddingsCount: null,
         params: {},
+
+        // status
+        statusSelector: '',
 
         //search
         search: '',
@@ -140,8 +177,22 @@
         }
 
         return grouped;
-      }
+      },
 
+      biddingStatuses() {
+        const statuses = [
+          ' ', 'waiting', 'approved', 'ongoing', 'draw', 'under_review',
+          'finnished', 'canceled', 'suspended', 'failure', 'reopened', 'desert'
+        ]
+
+        return statuses.map((status) => {
+          const localeStatus = (status === ' ') ? 'all' : status
+          return {
+            id: status,
+            text: this.$t(`models.bidding.attributes.statuses.${localeStatus}`)
+          }
+        })
+      }
     },
 
     methods: {
@@ -161,6 +212,19 @@
           })
       },
 
+      fetchByStatus() {
+        document.getElementById('search').value = '';
+
+        this.params = { search: '', status: this.statusSelector };
+
+        this.fetch();
+        this.updateRoute();
+      },
+
+      resetStatusSelector() {
+        this.statusSelector = ''
+      },
+
       updatePagination(aResponse) {
         this.page = aResponse.headers['x-page']
         this.totalPages = aResponse.headers['x-total']
@@ -178,7 +242,7 @@
       },
 
       fetchSearch() {
-        this.params = { search: this.search }
+        this.params = { search: this.search, status: '' }
 
         this.updateRoute()
       },

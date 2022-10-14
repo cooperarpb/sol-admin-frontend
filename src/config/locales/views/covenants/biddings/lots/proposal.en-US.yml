@@ -7,7 +7,10 @@
             title: Procurement Processes
             empty: No proposal
             loading: Loading proposals...
-
+            item_details: Detailing
+            attachments: Attachments
+            no_attachments: There are no attachments
+            
             proposal:
               status: 'Proposal %{status}'
               value: Proposal value
@@ -19,6 +22,7 @@
               confirmRefuse: Confirm rejection
               reproveProposal: Reject proposal
               confirmAccept: Approve proposal
+              item_details: Item details
 
             cancelRefuseOverlay:
               title: Cancel rejection

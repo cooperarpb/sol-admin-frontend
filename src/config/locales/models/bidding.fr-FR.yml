@@ -18,8 +18,14 @@
         covenantId: Convention
         covenant: Convention
         address: Lieu de livraison
+        cancel_comment: Raison pour l'annulation
+        classification_name: Classification
+        subclassifications: Sous-classifications
+        modality: Modalité
+        draw_end_days: Jours consécutifs pour le départage
 
         statuses:
+          all: -- Tout lister --
           approved: Libérée
           canceled: Annulée
           closed: Fermée
@@ -39,6 +45,11 @@
           lot: Prix par lot
           unitary: Prix individuel
 
+        modalities:
+          unrestricted: Ouverte/publique
+          open_invite: Invitation ouverte
+          closed_invite: Invitation fermée
+
       errors:
         covenant:
           missing: Le champ Convention ne peut pas rester en blanc
@@ -54,3 +65,6 @@
           missing: Le champ Date de clôture ne peut pas rester en blanc
         opening_date:
           missing: Le champ Date d'ouverture ne peut pas rester en blanc
+
+      select:
+        default: Rechercher l'état des enchères

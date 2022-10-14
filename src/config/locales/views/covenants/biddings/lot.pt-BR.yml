@@ -9,5 +9,6 @@ pt-BR:
             title: Lista de lotes
           button:
             details: Visualizar propostas
+            lot_questions: Visualizar esclarecimentos
 
           files: Arquivos do lote
